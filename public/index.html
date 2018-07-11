@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Firebase Hosting</title>
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-messaging.js"></script>
+</head>
+
+<body>
+  <input id='user' type="text" placeholder='Email'></input>
+  <input id='password' type="text" placeholder='Password'></input>
+  <button id='googleLogin'>Login</button>
+  <button id='googleSignup'>Sign Up</button>
+  <!-- <script defer src='firebase-messaging-sw.js'></script> -->
+  <script defer src='app.js'></script>
+
+  <h2>Get to chattin'!</h2>
+  <div>Welcome:
+    <div id='username'></div>
+  </div>
+  <input id='message' type='text' placeholder='Write something...' class='msgBox'>
+  <button type='button' onclick='push()'>Submit</button>
+  <div id='messages'></div>
+</body>
+
+</html>

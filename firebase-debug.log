@@ -1,0 +1,41 @@
+[debug] [2018-07-11T17:08:51.459Z] ----------------------------------------------------------------------
+[debug] [2018-07-11T17:08:51.462Z] Command:       /usr/local/Cellar/node/9.5.0/bin/node /usr/local/bin/firebase serve
+[debug] [2018-07-11T17:08:51.462Z] CLI Version:   3.19.3
+[debug] [2018-07-11T17:08:51.462Z] Platform:      darwin
+[debug] [2018-07-11T17:08:51.462Z] Node Version:  v9.5.0
+[debug] [2018-07-11T17:08:51.463Z] Time:          Wed Jul 11 2018 10:08:51 GMT-0700 (PDT)
+[debug] [2018-07-11T17:08:51.463Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-07-11T17:08:51.522Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-07-11T17:08:51.523Z] > authorizing via signed-in user
+[debug] [2018-07-11T17:08:51.527Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-07-11T17:08:51.527Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/FH_c9tcl3Y_oxABNDjeRyoO6-Uk73fxa1bWsEEjdkRqHHbsYMikU7hcDJd9QQNmy',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed Jul 11 2018 10:08:51 GMT-0700 (PDT)
+[debug] [2018-07-11T17:08:51.759Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-11T17:08:51.849Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/fir-auth-42327  
+  
+ Wed Jul 11 2018 10:08:51 GMT-0700 (PDT)
+[debug] [2018-07-11T17:08:52.506Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-11T17:08:52.507Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/fir-auth-42327/tokens  
+  
+ Wed Jul 11 2018 10:08:52 GMT-0700 (PDT)
+[debug] [2018-07-11T17:08:52.910Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-11T17:08:52.911Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/fir-auth-42327  
+  
+ Wed Jul 11 2018 10:08:52 GMT-0700 (PDT)
+[debug] [2018-07-11T17:08:53.398Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/Jacob/firebaseProjects/firebaseAuth'...
+[info] 
+[debug] [2018-07-11T17:08:53.401Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/590983170059/clients/_:getWebAppConfig  
+  
+ Wed Jul 11 2018 10:08:53 GMT-0700 (PDT)
+[debug] [2018-07-11T17:08:53.713Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
