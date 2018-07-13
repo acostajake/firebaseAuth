@@ -9,39 +9,49 @@ var config = {
 firebase.initializeApp(config);
 
 (function () {
-
   const user = document.getElementById('user')
   const password = document.getElementById('password')
-  const googleSignup = document.getElementById('googleSignup')
-  const googleLogin = document.getElementById('googleLogin')
+  const chatName = document.getElementById('username')
+  const signup = document.getElementById('signup')
+  const login = document.getElementById('login')
 
-  googleLogin.addEventListener('click', e => {
+  login.addEventListener('click', e => {
     const email = user.value;
     const pass = password.value;
     const auth = firebase.auth();
     const fbLogin = auth.signInWithEmailAndPassword(email, pass);
     fbLogin.catch(e => console.log(e.message))
-    console.log('logged in ' + email, pass)
+    console.log(e, 'logged in ' + email, pass)
+    user.value = '';
+    password.value = ''
   })
 
-  googleSignup.addEventListener('click', e => {
+  signup.addEventListener('click', e => {
     const email = user.value;
     const pass = password.value;
     const auth = firebase.auth();
     const fbLogin = auth.createUserWithEmailAndPassword(email, pass);
     fbLogin.catch(e => console.log(e.message));
-    console.log('logged in ' + email, pass)
+    console.log(e, 'logged in ' + email, pass)
+    user.value = '';
+    password.value = ''
   })
-  
+
+  addUser.addEventListener('click', e => {
+      const username = chatName.value;
+      let elem = "<img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT42zXlbvadH-WhcgfZ9ufjEs98dZNM84KfcPPBXg_dHIAjKkOk' />"
+      document.getElementById('usernameDisplay').innerHTML = '<div>' + elem + 'Say something, ' + '</div>' + username;
+      chatName.value = ''
+  })
 })();
-(console.log('testtest'))
 
 let id = Math.floor(Math.random() * 100);
-document.getElementById('username').innerhtml = 'Guest' + id;
+let usernameDisplay = document.getElementById('usernameDisplay').innerhtml;
 
 function push() {
   let message = document.getElementById('message').value;
-  firebase.database().ref().child('posts').push({ id: id, message: message });
+  console.log(chatName.value)
+  firebase.database().ref().child('posts').push({id: id, message: message});
   console.log('Push func successful!')
   document.getElementById('message').value = ''
 }
@@ -52,8 +62,9 @@ commentsRef.on('child_added', function (data) {
 })
 
 function displayMessage(data) {
+  console.log(data)
   let messages = document.getElementById('messages');
-  let newMessage = 'Guest' + data.id + ': ' + data.message;
+  let newMessage = "Guest" + data.id + ': ' + data.message;
   newMessage = '<div>' + newMessage + '</div>';
   messages.innerHTML = messages.innerHTML + newMessage;
 }
@@ -67,11 +78,40 @@ messaging.requestPermission()
         return messaging.getToken()
       })
       .then(function(token) {
-        console.log('token: ', token)
+        console.log('token: ', token)     
+        // if(token) {
+        //   console.log('token read 1')
+        //   //sendTokenToServer func throws err. commenting if/else out for now
+        //   sendTokenToServer();
+        //   console.log('token read 2')
+        //   updateUIForPushEnabled(token);
+        // } else {
+        //   console.log('No instance ID found');
+        //   updateUIForPushPermissionRequired();
+        //   setTokenSentToServer(false);
+        // }   
       })
       .catch(function (err) {
         console.log('no msging permission')
       })
+
+messaging.requestPermission()
+.then(function() {
+  messaging.onTokenRefresh(function() {
+    messaging.getToken().then(function(refreshedToken) {
+      console.log('Token refreshed.');
+      // Indicate that the new Instance ID token has not yet been sent to the
+      // app server.
+      setTokenSentToServer(false);
+      // Send Instance ID token to app server.
+      sendTokenToServer(refreshedToken);
+      // ...
+    }).catch(function(err) {
+      console.log('Unable to retrieve refreshed token ', err);
+      showToken('Unable to retrieve refreshed token ', err);
+    });
+  });
+})
 
 messaging.onMessage(function(payload) {
   console.log('onMessage :', payload)
