@@ -40,7 +40,7 @@ firebase.initializeApp(config);
   addUser.addEventListener('click', e => {
       const username = chatName.value;
       let elem = "<img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT42zXlbvadH-WhcgfZ9ufjEs98dZNM84KfcPPBXg_dHIAjKkOk' />"
-      document.getElementById('usernameDisplay').innerHTML = '<div>' + elem + 'Say something, ' + '</div>' + username;
+      document.getElementById('usernameDisplay').innerHTML = '<div>' + elem + '</div>' + "<div id='name'>" + username + "</div>";
       chatName.value = ''
   })
 })();
@@ -48,10 +48,12 @@ firebase.initializeApp(config);
 let id = Math.floor(Math.random() * 100);
 let usernameDisplay = document.getElementById('usernameDisplay').innerhtml;
 
+
 function push() {
   let message = document.getElementById('message').value;
-  console.log(chatName.value)
-  firebase.database().ref().child('posts').push({id: id, message: message});
+  let name = document.getElementById('name').innerHTML
+  console.log(name)
+  firebase.database().ref().child('posts').push({id: id, message: message, name: name});
   console.log('Push func successful!')
   document.getElementById('message').value = ''
 }
@@ -63,8 +65,9 @@ commentsRef.on('child_added', function (data) {
 
 function displayMessage(data) {
   console.log(data)
+  // let name = document.getElementById('name').innerHTML
   let messages = document.getElementById('messages');
-  let newMessage = "Guest" + data.id + ': ' + data.message;
+  let newMessage = data.name + ': ' + data.message;
   newMessage = '<div>' + newMessage + '</div>';
   messages.innerHTML = messages.innerHTML + newMessage;
 }
